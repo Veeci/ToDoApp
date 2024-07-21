@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".presentation.LoginFragment"
+    android:padding="16dp">
+
+    <ImageView
+        android:id="@+id/buttonBack"
+        android:layout_width="0dp"
+        android:layout_height="24dp"
+        android:layout_gravity="start"
+        android:layout_weight="1"
+        android:src="@drawable/btn_back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ContentDescription" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="-20dp"
+        android:text="@string/Login_login"
+        android:textColor="@color/selectedItem"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/buttonBack"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/emailET_Login"
+        android:layout_width="358dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="100dp"
+        android:autofillHints="email"
+        android:background="@null"
+        android:hint="@string/Login_email_hint"
+        android:inputType="textEmailAddress"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        android:padding="10dp"/>
+
+    <EditText
+        android:id="@+id/passwordET_Login"
+        android:layout_width="358dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/emailET_Login"
+        android:background="@null"
+        android:hint="@string/Login_password_hint"
+        android:padding="10dp"
+        tools:ignore="Autofill,TextFields" />
+
+    <TextView
+        android:id="@+id/forgotPasswordButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/Login_forgotpassword"
+        android:textColor="@color/mainTheme"
+        android:textSize="16sp"
+        app:layout_constraintTop_toBottomOf="@+id/passwordET_Login"
+        tools:layout_editor_absoluteX="16dp"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="357dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="200dp"
+        android:text="@string/Login_term"
+        android:textColor="@color/mainText"
+        android:textSize="12sp"
+        app:layout_constraintTop_toBottomOf="@+id/forgotPasswordButton"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="16dp" />
+
+    <Button
+        android:id="@+id/buttonLogin"
+        android:layout_width="358dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@color/mainTheme"
+        android:text="@string/Login_login"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

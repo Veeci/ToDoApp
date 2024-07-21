@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">ToDo App</string>
+    <!-- OnBoardingFragment -->
+    <string name="onboarding_slogan">Save and share notes</string>
+    <string name="onboarding_createaccount">Create account</string>
+    <string name="onboarding_have_an_account">Have an account?</string>
+    <string name="onboarding_login">Log in</string>
+
+    <!-- LoginFragment -->
+    <string name="Login_login">Log in</string>
+    <string name="Login_password_hint">Password</string>
+    <string name="Login_email_hint">Email</string>
+    <string name="Login_forgotpassword">Forgot password?</string>
+    <string name="Login_term">By continuing, you agree to our Terms of Service and Privacy Policy.</string>
+
+    <!-- SignupFragment -->
+    <string name="Signup_signup">Sign up</string>
+    <string name="Signup_username">User name</string>
+    <string name="Signup_enter_password">Enter your password</string>
+    <string name="Signup_enter_confirm_password">Confirm password</string>
+</resources>
