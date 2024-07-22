@@ -9,5 +9,6 @@ data class ToDo(
     val id: Int = 0,
     val title: String,
     val description: String,
-    val priority: Int
+    val priority: Int,
+    val category: String
 )

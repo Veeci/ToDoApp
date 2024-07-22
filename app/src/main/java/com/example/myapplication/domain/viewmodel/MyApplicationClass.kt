@@ -5,7 +5,7 @@ import com.example.myapplication.data.ToDoDatabase
 import com.example.myapplication.domain.repository.ToDoRepository
 import com.example.myapplication.domain.repository.ToDoRepositoryImplement
 
-class MyApplicationClass: Application()
+class MyApplicationClass : Application()
 {
     val database by lazy { ToDoDatabase.getDatabase(this) }
     val repository by lazy { ToDoRepositoryImplement(database.dao) }

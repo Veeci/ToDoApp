@@ -4,54 +4,62 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.example.myapplication.ARG_PARAM1
-import com.example.myapplication.ARG_PARAM2
+import androidx.fragment.app.activityViewModels
+import androidx.navigation.Navigation
 import com.example.myapplication.R
+import com.example.myapplication.data.ToDo
+import com.example.myapplication.databinding.FragmentAddNoteBinding
+import com.example.myapplication.domain.viewmodel.MyApplicationClass
+import com.example.myapplication.domain.viewmodel.ToDoViewModel
+import com.example.myapplication.domain.viewmodel.ToDoViewModelFactory
 
-/**
- * A simple [Fragment] subclass.
- * Use the [AddNoteFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class AddNoteFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+    private var _binding: FragmentAddNoteBinding? = null
+    private val binding get() = _binding!!
+
+    private val viewModel: ToDoViewModel by activityViewModels{
+        ToDoViewModelFactory((requireActivity().application as MyApplicationClass).repository)
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_add_note, container, false)
+    ): View {
+        _binding = FragmentAddNoteBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment AddNoteFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            AddNoteFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.buttonAdd.setOnClickListener{
+            val title = binding.titleET
+            val description = binding.descriptionET
+            val priority = binding.priorityET
+            val category = binding.categoryET
+
+            if(title.text.isNotEmpty() && description.text.isNotEmpty())
+            {
+                val newToDo = ToDo(
+                    title = title.text.toString(),
+                    description = description.text.toString(),
+                    priority = priority.text.toString().toInt(),
+                    category = category.text.toString()
+                )
+                viewModel.insert(newToDo)
+                Toast.makeText(context, "Congratulations! You have new thing to do!!!", Toast.LENGTH_SHORT).show()
+                Navigation.findNavController(view).navigate(R.id.action_addNoteFragment_to_mainFragment)
             }
+        }
+
     }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
 }
