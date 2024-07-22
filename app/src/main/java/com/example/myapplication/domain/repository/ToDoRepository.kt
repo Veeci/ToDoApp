@@ -1,4 +1,4 @@
-package com.example.myapplication.data.repository
+package com.example.myapplication.domain.repository
 
 import com.example.myapplication.data.ToDo
 import kotlinx.coroutines.flow.Flow

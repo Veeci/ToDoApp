@@ -1,4 +1,4 @@
-package com.example.myapplication.presentation
+package com.example.myapplication.presentation.auth.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater

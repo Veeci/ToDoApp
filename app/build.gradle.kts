@@ -72,4 +72,16 @@ dependencies {
 
     // Testing Navigation
     androidTestImplementation(libs.androidx.navigation.testing)
+
+    // ViewModel and LiveData
+    implementation (libs.androidx.lifecycle.viewmodel.ktx)
+    implementation (libs.androidx.lifecycle.livedata.ktx)
+
+    // Coroutines
+    implementation (libs.kotlinx.coroutines.core)
+    implementation (libs.kotlinx.coroutines.android)
+}
+
+kapt {
+    correctErrorTypes = true
 }

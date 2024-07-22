@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_main"
+    app:startDestination="@id/mainFragment">
+
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.example.myapplication.presentation.main.fragment.MainFragment"
+        android:label="fragment_main"
+        tools:layout="@layout/fragment_main" >
+        <action
+            android:id="@+id/action_mainFragment_to_addNoteFragment"
+            app:destination="@id/addNoteFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_noteListFragment"
+            app:destination="@id/noteListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/noteListFragment"
+        android:name="com.example.myapplication.presentation.main.fragment.note.NoteListFragment"
+        android:label="fragment_note_list"
+        tools:layout="@layout/fragment_note_list" >
+        <action
+            android:id="@+id/action_noteListFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+        <action
+            android:id="@+id/action_noteListFragment_to_noteDetailFragment"
+            app:destination="@id/noteDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addNoteFragment"
+        android:name="com.example.myapplication.presentation.main.fragment.note.AddNoteFragment"
+        android:label="fragment_add_note"
+        tools:layout="@layout/fragment_add_note" >
+        <action
+            android:id="@+id/action_addNoteFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/noteDetailFragment"
+        android:name="com.example.myapplication.presentation.main.fragment.note.NoteDetailFragment"
+        android:label="fragment_note_detail"
+        tools:layout="@layout/fragment_note_detail" >
+        <action
+            android:id="@+id/action_noteDetailFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
+</navigation>

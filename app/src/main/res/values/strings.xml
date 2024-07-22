@@ -18,4 +18,12 @@
     <string name="Signup_username">User name</string>
     <string name="Signup_enter_password">Enter your password</string>
     <string name="Signup_enter_confirm_password">Confirm password</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="Main_category_others">Others</string>
+    <string name="Main_category_work">Work</string>
+    <string name="Main_category_academic">Academic</string>
+    <string name="Main_category_personal">Personal</string>
+    <string name="Main_welcome">Welcome!</string>
+    <string name="Main_note_taking_app">Note-Taking App</string>
 </resources>
