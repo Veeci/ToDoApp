@@ -22,4 +22,7 @@ class ToDoRepositoryImplement(private val dao: ToDoDAO): ToDoRepository
         return dao.getToDoById(id)
     }
 
+    override suspend fun getAllToDoByCategory(category: String): Flow<List<ToDo>>? {
+        return dao.getAllToDoByCategory(category)
+    }
 }

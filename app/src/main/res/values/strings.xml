@@ -26,4 +26,6 @@
     <string name="Main_category_personal">Personal</string>
     <string name="Main_welcome">Welcome!</string>
     <string name="Main_note_taking_app">Note-Taking App</string>
+    <string name="Notelist_search">Search</string>
+    <string name="Notelist_back">Back</string>
 </resources>

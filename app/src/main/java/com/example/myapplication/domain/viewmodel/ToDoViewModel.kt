@@ -4,9 +4,11 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.asLiveData
+import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
 import com.example.myapplication.data.ToDo
 import com.example.myapplication.domain.repository.ToDoRepository
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class ToDoViewModel(private val repository: ToDoRepository): ViewModel()
@@ -23,6 +25,10 @@ class ToDoViewModel(private val repository: ToDoRepository): ViewModel()
 
     fun getToDoById(id: Int) = viewModelScope.launch {
         repository.getToDoById(id)
+    }
+
+    fun getAllToDoByCategory(category: String): LiveData<List<ToDo>> = liveData(Dispatchers.IO) {
+        repository.getAllToDoByCategory(category).collect{emit(it)}
     }
 }
 

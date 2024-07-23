@@ -9,4 +9,5 @@ interface ToDoRepository
     suspend fun deleteToDo(toDoEntity: ToDo)
     fun getAllToDo(): Flow<List<ToDo>>
     suspend fun getToDoById(id: Int): ToDo?
+    suspend fun getAllToDoByCategory(category: String): Flow<List<ToDo>>
 }
