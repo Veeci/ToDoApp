@@ -23,5 +23,8 @@ interface ToDoDAO
     suspend fun getToDoById(id: Int): ToDo?
 
     @Query("SELECT * FROM todo_table WHERE category = :category")
-    suspend fun getAllToDoByCategory(category: String): Flow<List<ToDo>>?
+    fun getAllToDoByCategory(category: String): Flow<List<ToDo>>?
+
+//    @Query("COUNT(*) FROM todo_table WHERE category = :category")
+//    fun getToDoCountByCategory(category: String): Flow<Int>
 }

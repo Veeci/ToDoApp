@@ -15,8 +15,8 @@ class ToDoAdapter: RecyclerView.Adapter<ToDoAdapter.ToDoViewHolder>()
 
     class ToDoViewHolder(itemView: View): RecyclerView.ViewHolder(itemView)
     {
-        val title: TextView = itemView.findViewById(R.id.titleET)
-        val description: TextView = itemView.findViewById(R.id.descriptionET)
+        val title: TextView = itemView.findViewById(R.id.todoTitle)
+        val description: TextView = itemView.findViewById(R.id.todoDescription)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ToDoViewHolder {

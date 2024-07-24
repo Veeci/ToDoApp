@@ -1,6 +1,7 @@
 package com.example.myapplication.domain.viewmodel
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.asLiveData
@@ -13,6 +14,12 @@ import kotlinx.coroutines.launch
 
 class ToDoViewModel(private val repository: ToDoRepository): ViewModel()
 {
+    val selectedCategory = MutableLiveData<String>()
+    fun setSelectedCategory(category: String)
+    {
+        selectedCategory.value = category
+    }
+
     val allToDo: LiveData<List<ToDo>> = repository.getAllToDo().asLiveData()
 
     fun insert(toDo: ToDo) = viewModelScope.launch {
@@ -27,9 +34,13 @@ class ToDoViewModel(private val repository: ToDoRepository): ViewModel()
         repository.getToDoById(id)
     }
 
-    fun getAllToDoByCategory(category: String): LiveData<List<ToDo>> = liveData(Dispatchers.IO) {
-        repository.getAllToDoByCategory(category).collect{emit(it)}
+    fun getAllToDoByCategory(category: String): LiveData<List<ToDo>> {
+        return repository.getAllToDoByCategory(category)?.asLiveData()!!
     }
+
+//    fun getToDoCountByCategory(category: String): LiveData<Int> {
+//        return repository.getToDoCountByCategory(category).asLiveData()
+//    }
 }
 
 class ToDoViewModelFactory(private val repository: ToDoRepository): ViewModelProvider.Factory

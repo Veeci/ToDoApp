@@ -13,7 +13,7 @@
         app:layout_constraintStart_toStartOf="parent"
         android:textStyle="bold"
         android:textColor="@color/selectedItem"
-        android:textSize="16sp"/>
+        android:textSize="30sp"/>
 
     <TextView
         android:id="@+id/todoDescription"
@@ -21,7 +21,7 @@
         android:layout_height="match_parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/todoTitle"
-        android:textSize="14sp"
+        android:textSize="20sp"
         android:textColor="@color/subText"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

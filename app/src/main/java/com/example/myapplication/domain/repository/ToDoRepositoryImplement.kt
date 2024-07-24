@@ -22,7 +22,11 @@ class ToDoRepositoryImplement(private val dao: ToDoDAO): ToDoRepository
         return dao.getToDoById(id)
     }
 
-    override suspend fun getAllToDoByCategory(category: String): Flow<List<ToDo>>? {
+    override fun getAllToDoByCategory(category: String): Flow<List<ToDo>>? {
         return dao.getAllToDoByCategory(category)
     }
+
+//    override fun getToDoCountByCategory(category: String): Flow<Int> {
+//        return dao.getToDoCountByCategory(category)
+//    }
 }
