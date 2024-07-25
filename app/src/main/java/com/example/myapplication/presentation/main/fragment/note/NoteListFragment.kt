@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.Navigation
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.myapplication.R
 import com.example.myapplication.databinding.FragmentNoteListBinding
 import com.example.myapplication.domain.adapter.ToDoAdapter
@@ -39,7 +39,7 @@ class NoteListFragment : Fragment() {
 
         adapter = ToDoAdapter()
 
-        binding.listRV.layoutManager = LinearLayoutManager(requireContext())
+        binding.listRV.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
         binding.listRV.adapter = adapter
 
         binding.categoryNameTV.text = viewModel.selectedCategory.value.toString()

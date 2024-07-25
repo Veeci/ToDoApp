@@ -16,10 +16,10 @@ import com.example.myapplication.domain.viewmodel.ToDoViewModelFactory
 
 class MainFragment : Fragment() {
 
-    private  var _binding: FragmentMainBinding? = null
+    private var _binding: FragmentMainBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel: ToDoViewModel by activityViewModels{
+    private val viewModel: ToDoViewModel by activityViewModels {
         ToDoViewModelFactory((requireActivity().application as MyApplicationClass).repository)
     }
 
@@ -36,6 +36,7 @@ class MainFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setFunctionalities(view)
+        //setUpObserver()
     }
 
     override fun onDestroyView() {
@@ -43,40 +44,55 @@ class MainFragment : Fragment() {
         _binding = null
     }
 
-    private fun onCategoryClick(category: String)
-    {
+    private fun onCategoryClick(category: String) {
         viewModel.setSelectedCategory(category)
     }
 
-    private fun setFunctionalities(view: View)
-    {
-        binding.fabAddNote.setOnClickListener{
+    private fun setFunctionalities(view: View) {
+        binding.fabAddNote.setOnClickListener {
             Navigation.findNavController(view)
                 .navigate(R.id.action_mainFragment_to_addNoteFragment)
         }
 
-        binding.categoryPersonal.setOnClickListener{
+        binding.categoryPersonal.setOnClickListener {
             onCategoryClick(binding.personalTV.text.toString())
             Navigation.findNavController(view)
                 .navigate(R.id.action_mainFragment_to_noteListFragment)
         }
 
-        binding.categoryAcademic.setOnClickListener{
+        binding.categoryAcademic.setOnClickListener {
             onCategoryClick(binding.academicTV.text.toString())
             Navigation.findNavController(view)
                 .navigate(R.id.action_mainFragment_to_noteListFragment)
         }
 
-        binding.categoryWork.setOnClickListener{
+        binding.categoryWork.setOnClickListener {
             onCategoryClick(binding.workTV.text.toString())
             Navigation.findNavController(view)
                 .navigate(R.id.action_mainFragment_to_noteListFragment)
         }
 
-        binding.categoryOthers.setOnClickListener{
+        binding.categoryOthers.setOnClickListener {
             onCategoryClick(binding.othersTV.text.toString())
             Navigation.findNavController(view)
                 .navigate(R.id.action_mainFragment_to_noteListFragment)
         }
+
+//        viewModel.getToDoCountByCategory(binding.personalTV.text.toString())
+//        viewModel.getToDoCountByCategory(binding.academicTV.text.toString())
+//        viewModel.getToDoCountByCategory(binding.workTV.text.toString())
+//        viewModel.getToDoCountByCategory(binding.othersTV.text.toString())
     }
+
+//    private fun setUpObserver()
+//    {
+//        viewModel.countLiveData.observe(viewLifecycleOwner){count ->
+//            when(viewModel.selectedCategory.value){
+//                binding.personalTV.text.toString() -> binding.personalFilesCount.text = count.toString()
+//                binding.academicTV.text.toString() -> binding.academicFilesCount.text = count.toString()
+//                binding.workTV.text.toString() -> binding.workFilesCount.text = count.toString()
+//                binding.othersTV.text.toString() -> binding.othersFilesCount.text = count.toString()
+//            }
+//        }
+//    }
 }

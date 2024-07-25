@@ -10,6 +10,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.myapplication.data.ToDo
 import com.example.myapplication.domain.repository.ToDoRepository
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.launch
 
 class ToDoViewModel(private val repository: ToDoRepository): ViewModel()
@@ -19,6 +20,9 @@ class ToDoViewModel(private val repository: ToDoRepository): ViewModel()
     {
         selectedCategory.value = category
     }
+
+//    private val _countLiveData = MutableLiveData<Int>()
+//    val countLiveData: LiveData<Int> get() = _countLiveData
 
     val allToDo: LiveData<List<ToDo>> = repository.getAllToDo().asLiveData()
 
@@ -38,8 +42,14 @@ class ToDoViewModel(private val repository: ToDoRepository): ViewModel()
         return repository.getAllToDoByCategory(category)?.asLiveData()!!
     }
 
-//    fun getToDoCountByCategory(category: String): LiveData<Int> {
-//        return repository.getToDoCountByCategory(category).asLiveData()
+//    fun getToDoCountByCategory(category: String) {
+//        viewModelScope.launch{
+//            repository.getToDoCountByCategory(category)
+//                .flowOn(Dispatchers.IO)
+//                .collect{ count ->
+//                    _countLiveData.postValue(count)
+//                }
+//        }
 //    }
 }
 

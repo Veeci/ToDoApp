@@ -2,7 +2,9 @@ package com.example.myapplication.domain.repository
 
 import com.example.myapplication.data.ToDo
 import com.example.myapplication.data.ToDoDAO
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flowOn
 
 class ToDoRepositoryImplement(private val dao: ToDoDAO): ToDoRepository
 {
@@ -27,6 +29,6 @@ class ToDoRepositoryImplement(private val dao: ToDoDAO): ToDoRepository
     }
 
 //    override fun getToDoCountByCategory(category: String): Flow<Int> {
-//        return dao.getToDoCountByCategory(category)
+//        return dao.getToDoCountByCategory(category).flowOn(Dispatchers.IO)
 //    }
 }
