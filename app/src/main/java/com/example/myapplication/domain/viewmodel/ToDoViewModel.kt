@@ -5,7 +5,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.asLiveData
-import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
 import com.example.myapplication.data.ToDo
 import com.example.myapplication.domain.repository.ToDoRepository
@@ -13,18 +12,18 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.launch
 
-class ToDoViewModel(private val repository: ToDoRepository): ViewModel()
-{
+class ToDoViewModel(private val repository: ToDoRepository) : ViewModel() {
+
     val selectedCategory = MutableLiveData<String>()
-    fun setSelectedCategory(category: String)
-    {
+    fun setSelectedCategory(category: String) {
         selectedCategory.value = category
     }
 
-//    private val _countLiveData = MutableLiveData<Int>()
-//    val countLiveData: LiveData<Int> get() = _countLiveData
+    private val _countLiveData = MutableLiveData<Int>()
+    val countLiveData: LiveData<Int> get() = _countLiveData
 
-    val allToDo: LiveData<List<ToDo>> = repository.getAllToDo().asLiveData()
+    private val _noteDetails = MutableLiveData<ToDo?>()
+    val noteDetails: LiveData<ToDo?> get() = _noteDetails
 
     fun insert(toDo: ToDo) = viewModelScope.launch {
         repository.insertToDo(toDo)
@@ -34,23 +33,29 @@ class ToDoViewModel(private val repository: ToDoRepository): ViewModel()
         repository.deleteToDo(toDo)
     }
 
-    fun getToDoById(id: Int) = viewModelScope.launch {
-        repository.getToDoById(id)
+    fun loadToDoById(id: Int) = viewModelScope.launch {
+        val todo = repository.getToDoById(id)
+        todo?.let {
+            _noteDetails.postValue(it)
+        } ?: run {
+            _noteDetails.postValue(null)
+        }
     }
+
 
     fun getAllToDoByCategory(category: String): LiveData<List<ToDo>> {
         return repository.getAllToDoByCategory(category)?.asLiveData()!!
     }
 
-//    fun getToDoCountByCategory(category: String) {
-//        viewModelScope.launch{
-//            repository.getToDoCountByCategory(category)
-//                .flowOn(Dispatchers.IO)
-//                .collect{ count ->
-//                    _countLiveData.postValue(count)
-//                }
-//        }
-//    }
+    fun getToDoCountByCategory(category: String) {
+        viewModelScope.launch {
+            repository.getToDoCountByCategory(category)
+                .flowOn(Dispatchers.IO)
+                .collect { count ->
+                    _countLiveData.postValue(count)
+                }
+        }
+    }
 }
 
 class ToDoViewModelFactory(private val repository: ToDoRepository): ViewModelProvider.Factory

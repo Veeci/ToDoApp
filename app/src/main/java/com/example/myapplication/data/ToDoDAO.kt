@@ -20,9 +20,6 @@ interface ToDoDAO
     @Delete
     suspend fun deleteToDo(toDoEntity: ToDo)
 
-    @Query("SELECT * FROM todo_table")
-    fun getAllToDo(): Flow<List<ToDo>>
-
     @Query("SELECT * FROM todo_table WHERE id = :id")
     suspend fun getToDoById(id: Int): ToDo?
 
@@ -32,6 +29,6 @@ interface ToDoDAO
 //    @Query("SELECT * FROM todo_table ORDER BY priority DESC")
 //    fun sortToDoByPriority(): Flow<List<ToDo>>
 
-//    @Query("SELECT COUNT(*) FROM todo_table WHERE category = :category")
-//    fun getToDoCountByCategory(category: String): Flow<Int>
+    @Query("SELECT COUNT(*) FROM todo_table WHERE category = :category")
+    fun getToDoCountByCategory(category: String): Flow<Int>
 }

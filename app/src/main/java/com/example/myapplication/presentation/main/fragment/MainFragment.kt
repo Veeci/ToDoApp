@@ -1,6 +1,7 @@
 package com.example.myapplication.presentation.main.fragment
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -36,7 +37,7 @@ class MainFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setFunctionalities(view)
-        //setUpObserver()
+//        setUpObserver()
     }
 
     override fun onDestroyView() {
@@ -46,6 +47,14 @@ class MainFragment : Fragment() {
 
     private fun onCategoryClick(category: String) {
         viewModel.setSelectedCategory(category)
+        viewModel.getAllToDoByCategory(category).observe(viewLifecycleOwner) { todos ->
+            when(category){
+                binding.personalTV.text.toString() -> binding.personalFilesCount.text = todos.size.toString()
+                binding.academicTV.text.toString() -> binding.academicFilesCount.text = todos.size.toString()
+                binding.workTV.text.toString() -> binding.workFilesCount.text = todos.size.toString()
+                binding.othersTV.text.toString() -> binding.othersFilesCount.text = todos.size.toString()
+            }
+        }
     }
 
     private fun setFunctionalities(view: View) {
@@ -54,45 +63,45 @@ class MainFragment : Fragment() {
                 .navigate(R.id.action_mainFragment_to_addNoteFragment)
         }
 
-        binding.categoryPersonal.setOnClickListener {
+        binding.categoryPersonalContainer.setOnClickListener {
             onCategoryClick(binding.personalTV.text.toString())
             Navigation.findNavController(view)
                 .navigate(R.id.action_mainFragment_to_noteListFragment)
         }
 
-        binding.categoryAcademic.setOnClickListener {
+        binding.categoryAcademicContainer.setOnClickListener {
             onCategoryClick(binding.academicTV.text.toString())
             Navigation.findNavController(view)
                 .navigate(R.id.action_mainFragment_to_noteListFragment)
         }
 
-        binding.categoryWork.setOnClickListener {
+        binding.categoryWorkContainer.setOnClickListener {
             onCategoryClick(binding.workTV.text.toString())
             Navigation.findNavController(view)
                 .navigate(R.id.action_mainFragment_to_noteListFragment)
         }
 
-        binding.categoryOthers.setOnClickListener {
+        binding.categoryOthersContainer.setOnClickListener {
             onCategoryClick(binding.othersTV.text.toString())
             Navigation.findNavController(view)
                 .navigate(R.id.action_mainFragment_to_noteListFragment)
         }
 
-//        viewModel.getToDoCountByCategory(binding.personalTV.text.toString())
-//        viewModel.getToDoCountByCategory(binding.academicTV.text.toString())
-//        viewModel.getToDoCountByCategory(binding.workTV.text.toString())
-//        viewModel.getToDoCountByCategory(binding.othersTV.text.toString())
+        viewModel.getToDoCountByCategory(binding.personalTV.text.toString())
+        viewModel.getToDoCountByCategory(binding.academicTV.text.toString())
+        viewModel.getToDoCountByCategory(binding.workTV.text.toString())
+        viewModel.getToDoCountByCategory(binding.othersTV.text.toString())
     }
 
-//    private fun setUpObserver()
-//    {
-//        viewModel.countLiveData.observe(viewLifecycleOwner){count ->
-//            when(viewModel.selectedCategory.value){
-//                binding.personalTV.text.toString() -> binding.personalFilesCount.text = count.toString()
-//                binding.academicTV.text.toString() -> binding.academicFilesCount.text = count.toString()
-//                binding.workTV.text.toString() -> binding.workFilesCount.text = count.toString()
-//                binding.othersTV.text.toString() -> binding.othersFilesCount.text = count.toString()
-//            }
-//        }
-//    }
+    private fun setUpObserver()
+    {
+        viewModel.countLiveData.observe(viewLifecycleOwner){count ->
+            when(viewModel.selectedCategory.value){
+                binding.personalTV.text.toString() -> binding.personalFilesCount.text = count.toString()
+                binding.academicTV.text.toString() -> binding.academicFilesCount.text = count.toString()
+                binding.workTV.text.toString() -> binding.workFilesCount.text = count.toString()
+                binding.othersTV.text.toString() -> binding.othersFilesCount.text = count.toString()
+            }
+        }
+    }
 }

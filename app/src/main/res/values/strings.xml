@@ -18,8 +18,8 @@
     <string name="Signup_username">User name</string>
     <string name="Signup_enter_password">Enter your password</string>
     <string name="Signup_enter_confirm_password">Confirm password</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- MainFragment -->
     <string name="Main_category_others">Others</string>
     <string name="Main_category_work">Work</string>
     <string name="Main_category_academic">Academic</string>
@@ -29,4 +29,31 @@
     <string name="Notelist_search">Search</string>
     <string name="Notelist_back">Back</string>
     <string name="Main_addtodo">Add new to do</string>
+
+    <!-- NoteDetailFragment -->
+    <string name="NoteDetail_back">Back</string>
+    <string name="NoteDetail_notfound">To do not found!!!</string>
+    <string name="Notedetail_titletv">Title:</string>
+    <string name="Notedetail_descriptiontv">Description:</string>
+    <string name="Notedetail_prioritytv">Priority:</string>
+    <string name="Notedetail_categorytv">Category:</string>
+    <string name="Notedetail_updatebtn">Update</string>
+    <string name="Notedetail_deletebtn">Delete</string>
+
+    <!-- AddNoteFragment -->
+    <string name="Addnote_title">Title</string>
+    <string name="Addnote_description">Description</string>
+    <string name="Addnote_priority">Priority</string>
+    <string name="Addnote_category">Category</string>
+    <string name="Addnote_addbtn">Add</string>
+
+
+    <string-array name="priority">
+        <item></item>
+        <item>1 - Do it IMMEDIATELY please!!!</item>
+        <item>2 - Do it ASAP @@</item>
+        <item>3 - Do it</item>
+        <item>4 - I will do it later</item>
+        <item>5 - Umm…Ehhh</item>
+    </string-array>
 </resources>

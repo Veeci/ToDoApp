@@ -56,6 +56,7 @@
 
             <!-- Category Personal -->
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/categoryPersonalContainer"
                 android:layout_width="195dp"
                 android:layout_height="195dp"
                 android:background="@drawable/category_holder"
@@ -100,6 +101,7 @@
 
             <!-- Category Academic -->
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/categoryAcademicContainer"
                 android:layout_width="195dp"
                 android:layout_height="195dp"
                 android:background="@drawable/category_holder"
@@ -144,6 +146,7 @@
 
             <!-- Category Work -->
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/categoryWorkContainer"
                 android:layout_width="195dp"
                 android:layout_height="195dp"
                 android:background="@drawable/category_holder"
@@ -188,6 +191,7 @@
 
             <!-- Category Others -->
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/categoryOthersContainer"
                 android:layout_width="195dp"
                 android:layout_height="195dp"
                 android:background="@drawable/category_holder"

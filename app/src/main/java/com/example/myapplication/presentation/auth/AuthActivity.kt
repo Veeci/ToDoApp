@@ -1,11 +1,13 @@
-                        package com.example.myapplication.presentation.auth
+package com.example.myapplication.presentation.auth
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.myapplication.R
+import com.example.myapplication.presentation.main.MainActivity
 
 class AuthActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -17,5 +19,7 @@ class AuthActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+        startActivity(Intent(this, MainActivity::class.java))
     }
 }

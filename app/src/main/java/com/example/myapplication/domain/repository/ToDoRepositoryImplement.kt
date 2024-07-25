@@ -16,10 +16,6 @@ class ToDoRepositoryImplement(private val dao: ToDoDAO): ToDoRepository
         dao.deleteToDo(toDoEntity)
     }
 
-    override fun getAllToDo(): Flow<List<ToDo>> {
-        return dao.getAllToDo()
-    }
-
     override suspend fun getToDoById(id: Int): ToDo? {
         return dao.getToDoById(id)
     }
@@ -28,7 +24,7 @@ class ToDoRepositoryImplement(private val dao: ToDoDAO): ToDoRepository
         return dao.getAllToDoByCategory(category)
     }
 
-//    override fun getToDoCountByCategory(category: String): Flow<Int> {
-//        return dao.getToDoCountByCategory(category).flowOn(Dispatchers.IO)
-//    }
+    override fun getToDoCountByCategory(category: String): Flow<Int> {
+        return dao.getToDoCountByCategory(category).flowOn(Dispatchers.IO)
+    }
 }

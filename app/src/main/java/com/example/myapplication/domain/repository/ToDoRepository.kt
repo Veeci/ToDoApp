@@ -7,8 +7,7 @@ interface ToDoRepository
 {
     suspend fun insertToDo(toDoEntity: ToDo)
     suspend fun deleteToDo(toDoEntity: ToDo)
-    fun getAllToDo(): Flow<List<ToDo>>
     suspend fun getToDoById(id: Int): ToDo?
     fun getAllToDoByCategory(category: String): Flow<List<ToDo>>?
-    //fun getToDoCountByCategory(category: String): Flow<Int>
+    fun getToDoCountByCategory(category: String): Flow<Int>
 }

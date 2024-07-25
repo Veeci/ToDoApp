@@ -9,14 +9,24 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.R
 import com.example.myapplication.data.ToDo
 
-class ToDoAdapter: RecyclerView.Adapter<ToDoAdapter.ToDoViewHolder>()
+class ToDoAdapter(private val listener: OnNoteClickListener): RecyclerView.Adapter<ToDoAdapter.ToDoViewHolder>()
 {
     private var todos: List<ToDo> = listOf()
 
-    class ToDoViewHolder(itemView: View): RecyclerView.ViewHolder(itemView)
+    inner class ToDoViewHolder(itemView: View): RecyclerView.ViewHolder(itemView)
     {
         val title: TextView = itemView.findViewById(R.id.todoTitle)
         val description: TextView = itemView.findViewById(R.id.todoDescription)
+
+        init {
+            itemView.setOnClickListener{
+                val position = bindingAdapterPosition
+                if(position != RecyclerView.NO_POSITION)
+                {
+                    listener.onNoteClick(todos[position].id)
+                }
+            }
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ToDoViewHolder {

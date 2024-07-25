@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -35,10 +36,17 @@ class AddNoteFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val spinnerPriority = binding.prioritySP
+        ArrayAdapter.createFromResource(requireContext(), R.array.priority, android.R.layout.simple_spinner_item).also { adapter ->
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            spinnerPriority.adapter = adapter
+        }
+        spinnerPriority.setSelection(0)
+
         binding.buttonAdd.setOnClickListener{
             val title = binding.titleET
             val description = binding.descriptionET
-            val priority = binding.priorityET
+            val priority = binding.prioritySP.selectedItem.toString().toInt()
             val category = binding.categoryET
 
             if(title.text.isNotEmpty() && description.text.isNotEmpty())
@@ -46,7 +54,7 @@ class AddNoteFragment : Fragment() {
                 val newToDo = ToDo(
                     title = title.text.toString(),
                     description = description.text.toString(),
-                    priority = priority.text.toString().toInt(),
+                    priority = priority,
                     category = category.text.toString()
                 )
                 viewModel.insert(newToDo)
