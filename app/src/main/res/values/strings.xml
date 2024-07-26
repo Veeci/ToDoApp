@@ -50,6 +50,7 @@
     <string name="Addnote_descriptionTV">Description:</string>
     <string name="Addnote_priorityTV">Priority:</string>
     <string name="Addnote_categoryTV">Category:</string>
+    <string name="Notedetail_note_detail">Note Detail</string>
 
 
     <string-array name="priority">
