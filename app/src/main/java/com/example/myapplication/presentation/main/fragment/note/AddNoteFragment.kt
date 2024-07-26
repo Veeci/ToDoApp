@@ -36,33 +36,7 @@ class AddNoteFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val spinnerPriority = binding.prioritySP
-        ArrayAdapter.createFromResource(requireContext(), R.array.priority, android.R.layout.simple_spinner_item).also { adapter ->
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            spinnerPriority.adapter = adapter
-        }
-        spinnerPriority.setSelection(0)
-
-        binding.buttonAdd.setOnClickListener{
-            val title = binding.titleET
-            val description = binding.descriptionET
-            val priority = binding.prioritySP.selectedItem.toString().toInt()
-            val category = binding.categoryET
-
-            if(title.text.isNotEmpty() && description.text.isNotEmpty())
-            {
-                val newToDo = ToDo(
-                    title = title.text.toString(),
-                    description = description.text.toString(),
-                    priority = priority,
-                    category = category.text.toString()
-                )
-                viewModel.insert(newToDo)
-                Toast.makeText(context, "Congratulations! You have new thing to do!!!", Toast.LENGTH_SHORT).show()
-                Navigation.findNavController(view).navigate(R.id.action_addNoteFragment_to_mainFragment)
-            }
-        }
-
+        setFunction(view)
     }
 
     override fun onDestroyView() {
@@ -70,4 +44,60 @@ class AddNoteFragment : Fragment() {
         _binding = null
     }
 
+    private fun setFunction(view: View) {
+        val spinnerPriority = binding.prioritySP
+        ArrayAdapter.createFromResource(requireContext(), R.array.priority, android.R.layout.simple_spinner_item).also { adapter ->
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            spinnerPriority.adapter = adapter
+        }
+        spinnerPriority.setSelection(0)
+
+        val spinnerCategory = binding.categorySP
+        ArrayAdapter.createFromResource(requireContext(), R.array.category, android.R.layout.simple_spinner_item).also { adapter ->
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            spinnerCategory.adapter = adapter
+        }
+        spinnerCategory.setSelection(0)
+
+        binding.buttonAdd.setOnClickListener{
+            val title = binding.titleET
+            val description = binding.descriptionET
+
+            var priority = 0
+            when(binding.prioritySP.selectedItemPosition)
+            {
+                1 -> priority = 1
+                2 -> priority = 2
+                3 -> priority = 3
+                4 -> priority = 4
+                5 -> priority = 5
+            }
+
+            var category = ""
+            when(binding.categorySP.selectedItemPosition)
+            {
+                1 -> category = "Personal"
+                2 -> category = "Academic"
+                3 -> category = "Work"
+                4 -> category = "Others"
+            }
+
+            if(title.text.isNotEmpty() && description.text.isNotEmpty())
+            {
+                val newToDo = ToDo(
+                    title = title.text.toString(),
+                    description = description.text.toString(),
+                    priority = priority,
+                    category = category
+                )
+                viewModel.insert(newToDo)
+                Toast.makeText(context, "Congratulations! You have new thing to do!!!", Toast.LENGTH_SHORT).show()
+                Navigation.findNavController(view).navigate(R.id.action_addNoteFragment_to_mainFragment)
+            }
+            else
+            {
+                Toast.makeText(context, "C'mon!!! At least just fill in the title and describe something about it -.-'", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
 }

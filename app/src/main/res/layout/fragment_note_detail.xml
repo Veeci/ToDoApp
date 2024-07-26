@@ -61,12 +61,13 @@
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/noteTitleTV"
+            <EditText
+                android:id="@+id/noteTitleET"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1.5"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:background="@null"/>
         </TableRow>
 
         <TableRow
@@ -87,12 +88,13 @@
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/noteDescriptionTV"
+            <EditText
+                android:id="@+id/noteDescriptionET"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1.5"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:background="@null"/>
         </TableRow>
 
         <TableRow
@@ -113,12 +115,13 @@
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/notePriorityTV"
+            <EditText
+                android:id="@+id/notePriorityET"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1.5"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:background="@null"/>
         </TableRow>
 
         <TableRow
@@ -139,12 +142,13 @@
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/noteCategoryTV"
+            <EditText
+                android:id="@+id/noteCategoryET"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1.5"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:background="@null"/>
         </TableRow>
 
         <TextView

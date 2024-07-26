@@ -25,6 +25,7 @@ class NoteListFragment : Fragment(), OnNoteClickListener {
     private val viewModel: ToDoViewModel by activityViewModels{
         ToDoViewModelFactory((requireActivity().application as MyApplicationClass).repository)
     }
+
     private lateinit var adapter: ToDoAdapter
 
     override fun onCreateView(
@@ -43,6 +44,16 @@ class NoteListFragment : Fragment(), OnNoteClickListener {
         binding.listRV.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
         binding.listRV.adapter = adapter
 
+        setFunction(view)
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
+    private fun setFunction(view: View)
+    {
         binding.categoryNameTV.text = viewModel.selectedCategory.value.toString()
 
         binding.backIV.setOnClickListener {
@@ -56,11 +67,6 @@ class NoteListFragment : Fragment(), OnNoteClickListener {
                 }
             }
         }
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 
     override fun onNoteClick(todoId: Int) {

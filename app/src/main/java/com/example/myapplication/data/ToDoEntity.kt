@@ -7,8 +7,8 @@ import androidx.room.PrimaryKey
 data class ToDo(
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0,
-    val title: String,
-    val description: String,
-    val priority: Int,
-    val category: String
+    var title: String,
+    var description: String,
+    var priority: Int,
+    var category: String
 )

@@ -18,7 +18,8 @@ class ToDoAdapter(private val listener: OnNoteClickListener): RecyclerView.Adapt
         val title: TextView = itemView.findViewById(R.id.todoTitle)
         val description: TextView = itemView.findViewById(R.id.todoDescription)
 
-        init {
+        init
+        {
             itemView.setOnClickListener{
                 val position = bindingAdapterPosition
                 if(position != RecyclerView.NO_POSITION)
@@ -29,14 +30,16 @@ class ToDoAdapter(private val listener: OnNoteClickListener): RecyclerView.Adapt
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ToDoViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ToDoViewHolder
+    {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.todo_item, parent, false)
         return ToDoViewHolder(view)
     }
 
     override fun getItemCount() = todos.size
 
-    override fun onBindViewHolder(holder: ToDoViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ToDoViewHolder, position: Int)
+    {
         val todo = todos[position]
         holder.title.text = todo.title
         holder.description.text = todo.description

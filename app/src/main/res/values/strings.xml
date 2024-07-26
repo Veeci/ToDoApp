@@ -46,6 +46,10 @@
     <string name="Addnote_priority">Priority</string>
     <string name="Addnote_category">Category</string>
     <string name="Addnote_addbtn">Add</string>
+    <string name="Addnote_titleTV">Title:</string>
+    <string name="Addnote_descriptionTV">Description:</string>
+    <string name="Addnote_priorityTV">Priority:</string>
+    <string name="Addnote_categoryTV">Category:</string>
 
 
     <string-array name="priority">
@@ -55,5 +59,13 @@
         <item>3 - Do it</item>
         <item>4 - I will do it later</item>
         <item>5 - Umm…Ehhh</item>
+    </string-array>
+
+    <string-array name="category">
+        <item></item>
+        <item>Personal</item>
+        <item>Academic</item>
+        <item>Work</item>
+        <item>Others</item>
     </string-array>
 </resources>

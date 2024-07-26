@@ -9,29 +9,41 @@ import androidx.lifecycle.viewModelScope
 import com.example.myapplication.data.ToDo
 import com.example.myapplication.domain.repository.ToDoRepository
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.launch
 
 class ToDoViewModel(private val repository: ToDoRepository) : ViewModel() {
 
-    val selectedCategory = MutableLiveData<String>()
-    fun setSelectedCategory(category: String) {
-        selectedCategory.value = category
-    }
-
-    private val _countLiveData = MutableLiveData<Int>()
-    val countLiveData: LiveData<Int> get() = _countLiveData
-
-    private val _noteDetails = MutableLiveData<ToDo?>()
-    val noteDetails: LiveData<ToDo?> get() = _noteDetails
-
     fun insert(toDo: ToDo) = viewModelScope.launch {
         repository.insertToDo(toDo)
+    }
+
+    fun update(toDo: ToDo) = viewModelScope.launch {
+        repository.updateToDo(toDo)
     }
 
     fun delete(toDo: ToDo) = viewModelScope.launch {
         repository.deleteToDo(toDo)
     }
+
+    fun getTodoById(id: Int) = viewModelScope.async {
+        repository.getToDoById(id)
+    }
+
+    fun getAllToDoByCategory(category: String): LiveData<List<ToDo>> {
+        return repository.getAllToDoByCategory(category)?.asLiveData()!!
+    }
+
+    //To identify which category is being selected
+    val selectedCategory = MutableLiveData<String>()
+    fun setSelectedCategory(category: String) {
+        selectedCategory.value = category
+    }
+
+    //To display detail of the note
+    private val _noteDetails = MutableLiveData<ToDo?>()
+    val noteDetails: LiveData<ToDo?> get() = _noteDetails
 
     fun loadToDoById(id: Int) = viewModelScope.launch {
         val todo = repository.getToDoById(id)
@@ -42,10 +54,9 @@ class ToDoViewModel(private val repository: ToDoRepository) : ViewModel() {
         }
     }
 
-
-    fun getAllToDoByCategory(category: String): LiveData<List<ToDo>> {
-        return repository.getAllToDoByCategory(category)?.asLiveData()!!
-    }
+    //To count number of notes belong to that category
+    private val _countLiveData = MutableLiveData<Int>()
+    val countLiveData: LiveData<Int> get() = _countLiveData
 
     fun getToDoCountByCategory(category: String) {
         viewModelScope.launch {

@@ -26,9 +26,9 @@ interface ToDoDAO
     @Query("SELECT * FROM todo_table WHERE category = :category")
     fun getAllToDoByCategory(category: String): Flow<List<ToDo>>?
 
-//    @Query("SELECT * FROM todo_table ORDER BY priority DESC")
-//    fun sortToDoByPriority(): Flow<List<ToDo>>
-
     @Query("SELECT COUNT(*) FROM todo_table WHERE category = :category")
     fun getToDoCountByCategory(category: String): Flow<Int>
+
+//    @Query("SELECT * FROM todo_table ORDER BY priority DESC")
+//    fun sortToDoByPriority(): Flow<List<ToDo>>
 }

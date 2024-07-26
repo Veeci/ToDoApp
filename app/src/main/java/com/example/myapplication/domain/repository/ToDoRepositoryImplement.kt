@@ -12,6 +12,10 @@ class ToDoRepositoryImplement(private val dao: ToDoDAO): ToDoRepository
         dao.insertToDo(toDoEntity)
     }
 
+    override suspend fun updateToDo(toDoEntity: ToDo) {
+        dao.updateToDo(toDoEntity)
+    }
+
     override suspend fun deleteToDo(toDoEntity: ToDo) {
         dao.deleteToDo(toDoEntity)
     }
