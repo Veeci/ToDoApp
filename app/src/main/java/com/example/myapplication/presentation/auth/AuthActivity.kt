@@ -19,7 +19,5 @@ class AuthActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-
-        startActivity(Intent(this, MainActivity::class.java))
     }
 }
